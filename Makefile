@@ -1,6 +1,9 @@
-VMS = simple_jvm/jvm simple_dvm/dvm
+VMS = tests/dhry.dex simple_jvm/jvm simple_dvm/dvm
 
 all: $(VMS)
+
+tests/dhry.dex:
+	$(MAKE) -C tests
 
 simple_jvm/jvm:
 	$(MAKE) -C simple_jvm
@@ -9,6 +12,7 @@ simple_dvm/dvm:
 	$(MAKE) -C simple_dvm
 
 clean:
+	$(MAKE) -C tests clean
 	$(MAKE) -C simple_jvm clean
 	$(MAKE) -C simple_dvm clean
 	$(RM) output-jvm output-dvm

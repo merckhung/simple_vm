@@ -6,11 +6,102 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXFileReference section */
+		69E2E37618E19507003CA14D /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		69E2E37718E19507003CA14D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		69E2E38718E1951B003CA14D /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		69E2E38818E1951B003CA14D /* bytecodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bytecodes.c; sourceTree = "<group>"; };
+		69E2E38918E1951B003CA14D /* class_def_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = class_def_parser.c; sourceTree = "<group>"; };
+		69E2E38A18E1951B003CA14D /* dex_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dex_parser.c; sourceTree = "<group>"; };
+		69E2E38B18E1951B003CA14D /* java_lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = java_lib.c; sourceTree = "<group>"; };
+		69E2E38C18E1951B003CA14D /* java_lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = java_lib.h; sourceTree = "<group>"; };
+		69E2E38D18E1951B003CA14D /* leb128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = leb128.c; sourceTree = "<group>"; };
+		69E2E38E18E1951B003CA14D /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		69E2E38F18E1951B003CA14D /* map_list_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = map_list_parser.c; sourceTree = "<group>"; };
+		69E2E39018E1951B003CA14D /* method_ids_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = method_ids_parser.c; sourceTree = "<group>"; };
+		69E2E39118E1951B003CA14D /* simple_dvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_dvm.h; sourceTree = "<group>"; };
+		69E2E39218E1951B003CA14D /* string_ids_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string_ids_parser.c; sourceTree = "<group>"; };
+		69E2E39318E1951B003CA14D /* type_ids_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = type_ids_parser.c; sourceTree = "<group>"; };
+		69E2E39418E1951B003CA14D /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
+		69E2E39618E1952B003CA14D /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		69E2E39718E1952B003CA14D /* bytecodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bytecodes.c; sourceTree = "<group>"; };
+		69E2E39818E1952B003CA14D /* class_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = class_parser.c; sourceTree = "<group>"; };
+		69E2E39918E1952B003CA14D /* constant_pool_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constant_pool_parser.c; sourceTree = "<group>"; };
+		69E2E39A18E1952B003CA14D /* field_pool_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = field_pool_parser.c; sourceTree = "<group>"; };
+		69E2E39B18E1952B003CA14D /* free_pool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = free_pool.c; sourceTree = "<group>"; };
+		69E2E39C18E1952B003CA14D /* interface_pool_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interface_pool_parser.c; sourceTree = "<group>"; };
+		69E2E39D18E1952B003CA14D /* java_lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = java_lib.c; sourceTree = "<group>"; };
+		69E2E39E18E1952B003CA14D /* java_lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = java_lib.h; sourceTree = "<group>"; };
+		69E2E39F18E1952B003CA14D /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		69E2E3A018E1952B003CA14D /* method_pool_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = method_pool_parser.c; sourceTree = "<group>"; };
+		69E2E3A118E1952B003CA14D /* simple_jvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_jvm.h; sourceTree = "<group>"; };
+		69E2E3A218E1952B003CA14D /* stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
+		69E2E3A418E19532003CA14D /* Foo1.class */ = {isa = PBXFileReference; lastKnownFileType = compiled.javaclass; path = Foo1.class; sourceTree = "<group>"; };
+		69E2E3A518E19532003CA14D /* Foo1.dex */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foo1.dex; sourceTree = "<group>"; };
+		69E2E3A618E19532003CA14D /* Foo1.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Foo1.java; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		69E2E36B18E194A5003CA14D = {
 			isa = PBXGroup;
 			children = (
+				69E2E3A318E19532003CA14D /* tests */,
+				69E2E39518E1952B003CA14D /* simple_jvm */,
+				69E2E38618E1951B003CA14D /* simple_dvm */,
+				69E2E37618E19507003CA14D /* Makefile */,
+				69E2E37718E19507003CA14D /* LICENSE */,
 			);
+			sourceTree = "<group>";
+		};
+		69E2E38618E1951B003CA14D /* simple_dvm */ = {
+			isa = PBXGroup;
+			children = (
+				69E2E38718E1951B003CA14D /* Makefile */,
+				69E2E38818E1951B003CA14D /* bytecodes.c */,
+				69E2E38918E1951B003CA14D /* class_def_parser.c */,
+				69E2E38A18E1951B003CA14D /* dex_parser.c */,
+				69E2E38B18E1951B003CA14D /* java_lib.c */,
+				69E2E38C18E1951B003CA14D /* java_lib.h */,
+				69E2E38D18E1951B003CA14D /* leb128.c */,
+				69E2E38E18E1951B003CA14D /* main.c */,
+				69E2E38F18E1951B003CA14D /* map_list_parser.c */,
+				69E2E39018E1951B003CA14D /* method_ids_parser.c */,
+				69E2E39118E1951B003CA14D /* simple_dvm.h */,
+				69E2E39218E1951B003CA14D /* string_ids_parser.c */,
+				69E2E39318E1951B003CA14D /* type_ids_parser.c */,
+				69E2E39418E1951B003CA14D /* utils.c */,
+			);
+			path = simple_dvm;
+			sourceTree = "<group>";
+		};
+		69E2E39518E1952B003CA14D /* simple_jvm */ = {
+			isa = PBXGroup;
+			children = (
+				69E2E39618E1952B003CA14D /* Makefile */,
+				69E2E39718E1952B003CA14D /* bytecodes.c */,
+				69E2E39818E1952B003CA14D /* class_parser.c */,
+				69E2E39918E1952B003CA14D /* constant_pool_parser.c */,
+				69E2E39A18E1952B003CA14D /* field_pool_parser.c */,
+				69E2E39B18E1952B003CA14D /* free_pool.c */,
+				69E2E39C18E1952B003CA14D /* interface_pool_parser.c */,
+				69E2E39D18E1952B003CA14D /* java_lib.c */,
+				69E2E39E18E1952B003CA14D /* java_lib.h */,
+				69E2E39F18E1952B003CA14D /* main.c */,
+				69E2E3A018E1952B003CA14D /* method_pool_parser.c */,
+				69E2E3A118E1952B003CA14D /* simple_jvm.h */,
+				69E2E3A218E1952B003CA14D /* stack.c */,
+			);
+			path = simple_jvm;
+			sourceTree = "<group>";
+		};
+		69E2E3A318E19532003CA14D /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				69E2E3A418E19532003CA14D /* Foo1.class */,
+				69E2E3A518E19532003CA14D /* Foo1.dex */,
+				69E2E3A618E19532003CA14D /* Foo1.java */,
+			);
+			path = tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +256,7 @@
 				69E2E37518E194A5003CA14D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,6 +8,20 @@
 #include "simple_dvm.h"
 #include "java_lib.h"
 
+
+
+static int op_nothing(
+  DexFileFormat *dex,
+  simple_dalvik_vm *vm,
+  u1 *ptr,
+  int *pc ) {
+
+  printf( "[DEBUG] OP NOTHING\n" );
+  return 0;
+}
+
+
+
 static int find_const_string(DexFileFormat *dex, char *entry)
 {
     int i = 0;
@@ -671,29 +685,83 @@ static int op_div_int_lit8(DexFileFormat *dex, simple_dalvik_vm *vm, u1 *ptr, in
 }
 
 static byteCode byteCodes[] = {
-    { "move-result-wide"  , 0x0B, 2,  op_move_result_wide },
-    { "move-result-object", 0x0C, 2,  op_move_result_object },
-    { "return-void"       , 0x0e, 2,  op_return_void },
-    { "const/4"           , 0x12, 2,  op_const_4 },
-    { "const/16"          , 0x13, 4,  op_const_16 },
-    { "const-wide/high16" , 0x19, 4,  op_const_wide_high16 },
-    { "const-string"      , 0x1a, 4,  op_const_string },
-    { "new-instance"      , 0x22, 4,  op_new_instance },
-    { "sget-object"       , 0x62, 4,  op_sget_object },
-    { "invoke-virtual"    , 0x6e, 6,  op_invoke_virtual },
-    { "invoke-direct"     , 0x70, 6,  op_invoke_direct },
-    { "invoke-static"     , 0x71, 6,  op_invoke_static },
-    { "double-to-int"     , 0x8a, 2,  op_double_to_int},
-    { "add-int"           , 0x90, 4,  op_add_int },
-    { "sub-int"           , 0x91, 4,  op_sub_int },
-    { "mul-int"           , 0x92, 4,  op_mul_int },
-    { "div-int"           , 0x93, 4,  op_div_int },
-    { "add-int/2addr"     , 0xb0, 2,  op_add_int_2addr},
-    { "add-double/2addr"  , 0xcb, 2,  op_add_double_2addr},
-    { "mul-double/2addr"  , 0xcd, 2,  op_mul_double_2addr},
-    { "div-int/lit8"      , 0xdb, 4,  op_div_int_lit8 }
+
+  { "move-result-wide"  , 0x0B, 2,  op_move_result_wide },
+  { "move-result-object", 0x0C, 2,  op_move_result_object },
+  { "return-void"       , 0x0e, 2,  op_return_void },
+  { "const/4"           , 0x12, 2,  op_const_4 },
+  { "const/16"          , 0x13, 4,  op_const_16 },
+  { "const-wide/high16" , 0x19, 4,  op_const_wide_high16 },
+  { "const-string"      , 0x1a, 4,  op_const_string },
+  { "new-instance"      , 0x22, 4,  op_new_instance },
+  { "sget-object"       , 0x62, 4,  op_sget_object },
+  { "invoke-virtual"    , 0x6e, 6,  op_invoke_virtual },
+  { "invoke-direct"     , 0x70, 6,  op_invoke_direct },
+  { "invoke-static"     , 0x71, 6,  op_invoke_static },
+  { "double-to-int"     , 0x8a, 2,  op_double_to_int},
+  { "add-int"           , 0x90, 4,  op_add_int },
+  { "sub-int"           , 0x91, 4,  op_sub_int },
+  { "mul-int"           , 0x92, 4,  op_mul_int },
+  { "div-int"           , 0x93, 4,  op_div_int },
+  { "add-int/2addr"     , 0xb0, 2,  op_add_int_2addr},
+  { "add-double/2addr"  , 0xcb, 2,  op_add_double_2addr},
+  { "mul-double/2addr"  , 0xcd, 2,  op_mul_double_2addr},
+  { "div-int/lit8"      , 0xdb, 4,  op_div_int_lit8 },
+
+  // Customized
+  { "nop"               , 0x00, 4,  op_nothing },
+  { "move"              , 0x01, 4,  op_nothing },
+  { "move-result"       , 0x0A, 4,  op_nothing },
+  { "move-exception"    , 0x0D, 4,  op_nothing },
+  { "return"            , 0x0F, 4,  op_nothing },
+  { "const-wide/16"     , 0x16, 4,  op_nothing },
+  { "const-wide/32"     , 0x17, 4,  op_nothing },
+  { "new-array"         , 0x23, 4,  op_nothing },
+  { "goto"              , 0x28, 4,  op_nothing },
+  { "packed-switch"     , 0x2B, 4,  op_nothing },
+  { "cmp-long"          , 0x31, 4,  op_nothing },
+  { "if-eq"             , 0x32, 4,  op_nothing },
+  { "if-ne"             , 0x33, 4,  op_nothing },
+  { "if-lt"             , 0x34, 4,  op_nothing },
+  { "if-ge"             , 0x35, 4,  op_nothing },
+  { "if-gt"             , 0x36, 4,  op_nothing },
+  { "if-le"             , 0x37, 4,  op_nothing },
+  { "if-eqz"            , 0x38, 4,  op_nothing },
+  { "if-nez"            , 0x39, 4,  op_nothing },
+  { "if-gtz"            , 0x3C, 4,  op_nothing },
+  { "if-lez"            , 0x3D, 4,  op_nothing },
+  { "aget"              , 0x44, 4,  op_nothing },
+  { "aget-object"       , 0x46, 4,  op_nothing },
+  { "aput"              , 0x4B, 4,  op_nothing },
+  { "iget"              , 0x52, 4,  op_nothing },
+  { "iget-wide"         , 0x53, 4,  op_nothing },
+  { "iget-object"       , 0x54, 4,  op_nothing },
+  { "iput"              , 0x59, 4,  op_nothing },
+  { "iput-wide"         , 0x5A, 4,  op_nothing },
+  { "iput-object"       , 0x5B, 4,  op_nothing },
+  { "sget"              , 0x60, 4,  op_nothing },
+  { "sget-object"       , 0x62, 4,  op_nothing },
+  { "sget-boolean"      , 0x63, 4,  op_nothing },
+  { "sget-char"         , 0x65, 4,  op_nothing },
+  { "sput"              , 0x67, 4,  op_nothing },
+  { "sput-object"       , 0x69, 4,  op_nothing },
+  { "sput-boolean"      , 0x6A, 4,  op_nothing },
+  { "sput-char"         , 0x6C, 4,  op_nothing },
+  { "invoke-virtual"    , 0x6E, 4,  op_nothing },
+  { "invoke-direct"     , 0x70, 4,  op_nothing },
+  { "invoke-static"     , 0x71, 4,  op_nothing },
+  { "invoke-interface"  , 0x72, 4,  op_nothing },
+  { "int-to-long"       , 0x81, 4,  op_nothing },
+  { "int-to-char"       , 0x8E, 4,  op_nothing },
+  { "div-long"          , 0x9E, 4,  op_nothing },
+  { "sub-int/2addr"     , 0xB1, 4,  op_nothing },
+  { "sub-long/2addr"    , 0xBC, 4,  op_nothing },
+  { "mul-long/2addr"    , 0xBD, 4,  op_nothing },
+  { "add-int/lit8"      , 0xD8, 4,  op_nothing },
+  { "mul-int/lit8"      , 0xDA, 4,  op_nothing },
 };
 static byteCode_size = sizeof(byteCodes) / sizeof(byteCode);
+
 
 static opCodeFunc findOpCodeFunc(unsigned char op)
 {

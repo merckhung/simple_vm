@@ -21,3 +21,7 @@ check: $(VMS)
 	simple_jvm/jvm tests/Foo1.class > output-jvm
 	simple_dvm/dvm tests/Foo1.dex > output-dvm
 	@diff -u output-jvm output-dvm || echo "ERROR: different results"
+
+mychk: $(VMS)
+	simple_dvm/dvm tests/dhry.dex
+

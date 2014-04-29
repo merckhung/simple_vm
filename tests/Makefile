@@ -1,3 +1,4 @@
+OS := $(shell uname -s)
 ifeq ($(OS), Darwin)
 DX_PATH := /Users/merck/Projects/mydroid/out/host/darwin-x86/bin/dx
 DEXDUMP_PATH := /Users/merck/Projects/mydroid/out/host/darwin-x86/bin/dexdump

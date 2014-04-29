@@ -82,6 +82,7 @@ int parseDexFile(char *file, DexFileFormat *dex)
     parse_class_defs(dex, buf, dex->header.classDefsOff - sizeof(DexHeader));
 
     if (dex->header.dataSize > 0) {
+      
         dex->data = malloc(sizeof(u1) * dex->header.dataSize);
         memcpy(dex->data, buf, dex->header.dataOff - sizeof(DexHeader));
     }

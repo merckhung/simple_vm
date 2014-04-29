@@ -772,6 +772,7 @@ static opCodeFunc findOpCodeFunc(unsigned char op)
     return 0;
 }
 
+
 void runMethod(DexFileFormat *dex, simple_dalvik_vm *vm, encoded_method *m)
 {
     u1 *ptr = (u1 *) m->code_item.insns;
@@ -779,20 +780,27 @@ void runMethod(DexFileFormat *dex, simple_dalvik_vm *vm, encoded_method *m)
     opCodeFunc func = 0;
 
     vm->pc = 0;
+  
     while (1) {
+      
         if (vm->pc >= m->code_item.insns_size * sizeof(ushort))
             break;
+      
         opCode = ptr[vm->pc];
         func = findOpCodeFunc(opCode);
         if (func != 0) {
+          
             func(dex, vm, ptr, &vm->pc);
+          
         } else {
+          
             printRegs(vm);
-            printf("Unknow OpCode =%02x \n", opCode);
+            printf("Unknown OpCode =%02x \n", opCode);
             break;
         }
     }
 }
+
 
 void simple_dvm_startup(DexFileFormat *dex, simple_dalvik_vm *vm, char *entry)
 {
@@ -804,19 +812,25 @@ void simple_dvm_startup(DexFileFormat *dex, simple_dalvik_vm *vm, char *entry)
     method_name_idx = find_const_string(dex, entry);
 
     if (method_name_idx < 0) {
+      
         printf("no method %s in dex\n", entry);
         return;
     }
+  
     for (i = 0 ; i < dex->header.methodIdsSize; i++)
         if (dex->method_id_item[i].name_idx == method_name_idx) {
+          
             if (is_verbose() > 2)
                 printf("find %s in class_idx[%d], method_id = %d\n",
                        entry, i - 1, i);
+          
             class_idx = i - 1;
             method_idx = i;
             break;
         }
+  
     if (class_idx < 0 || method_idx < 0) {
+      
         printf("no method %s in dex\n", entry);
         return;
     }

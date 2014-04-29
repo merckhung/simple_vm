@@ -115,26 +115,33 @@ static void parse_class_data_item(DexFileFormat *dex,
 void parse_class_defs(DexFileFormat *dex, unsigned char *buf, int offset)
 {
     int i = 0;
+  
     if (is_verbose() > 3)
         printf("parse class defs offset = %04x\n", offset + sizeof(DexHeader));
+  
     if (dex->header.classDefsSize <= 0)
         return;
+  
     dex->class_def_item = malloc(
                               sizeof(class_def_item) * dex->header.classDefsSize);
     dex->class_data_item = malloc(
                                sizeof(class_data_item) * dex->header.classDefsSize);
 
     for (i = 0 ; i < dex->header.classDefsSize; i++) {
+      
         memcpy(&dex->class_def_item[i],
                buf + i * sizeof(class_def_item) + offset,
                sizeof(class_def_item));
+      
         if (is_verbose() > 3) {
+          
             printf(" class_defs[%d], cls_id = %d, data_off = 0x%04x, source_file_idx = %d\n",
                    i,
                    dex->class_def_item[i].class_idx,
                    dex->class_def_item[i].class_data_off,
                    dex->class_def_item[i].source_file_idx);
         }
+      
         parse_class_data_item(dex, buf,
                               dex->class_def_item[i].class_data_off - sizeof(DexHeader), i);
     }

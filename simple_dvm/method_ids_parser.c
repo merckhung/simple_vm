@@ -12,9 +12,9 @@ void parse_method_ids(DexFileFormat *dex, unsigned char *buf, int offset)
     if (is_verbose() > 3)
         printf("parse method ids offset = %04x\n", offset + sizeof(DexHeader));
     dex->method_id_item = malloc(
-                              sizeof(method_id_item) * dex->header.methodIdsSize);
+                              sizeof(method_id_item) * dex->header->methodIdsSize);
 
-    for (i = 0 ; i < dex->header.methodIdsSize ; i++) {
+    for (i = 0 ; i < dex->header->methodIdsSize ; i++) {
         memcpy(&dex->method_id_item[i],
                buf + i * sizeof(method_id_item) + offset,
                sizeof(method_id_item));
@@ -31,7 +31,7 @@ void parse_method_ids(DexFileFormat *dex, unsigned char *buf, int offset)
 
 method_id_item *get_method_item(DexFileFormat *dex, int method_id)
 {
-    if (method_id >= 0 && method_id < dex->header.methodIdsSize)
+    if (method_id >= 0 && method_id < dex->header->methodIdsSize)
         return &dex->method_id_item[method_id];
     return 0;
 }

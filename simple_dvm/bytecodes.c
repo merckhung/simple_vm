@@ -25,7 +25,7 @@ static int op_nothing(
 static int find_const_string(DexFileFormat *dex, char *entry)
 {
     int i = 0;
-    for (i = 0; i < dex->header.stringIdsSize; i++) {
+    for (i = 0; i < dex->header->stringIdsSize; i++) {
         if (memcmp(dex->string_data_item[i].data, entry, strlen(entry)) == 0) {
             if (is_verbose())
                 printf("find %s in dex->string_data_item[%d]\n", entry, i);
@@ -817,7 +817,7 @@ void simple_dvm_startup(DexFileFormat *dex, simple_dalvik_vm *vm, char *entry)
         return;
     }
   
-    for (i = 0 ; i < dex->header.methodIdsSize; i++)
+    for (i = 0 ; i < dex->header->methodIdsSize; i++)
         if (dex->method_id_item[i].name_idx == method_name_idx) {
           
             if (is_verbose() > 2)

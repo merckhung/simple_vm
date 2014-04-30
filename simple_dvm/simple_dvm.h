@@ -145,24 +145,27 @@ typedef struct _DexHeader {
     u4 dataOff;
 } DexHeader;
 
+
 typedef struct DexFileFormat {
-    DexHeader header;
-    string_ids       *string_ids;
-    string_data_item *string_data_item;
-    type_id_item     *type_id_item;
-    proto_id_item    *proto_id_item;
-    type_list        *proto_type_list;
-    field_id_item    *field_id_item;
-    method_id_item   *method_id_item;
-    class_def_item   *class_def_item;
-    class_data_item  *class_data_item;
-    map_list         map_list;
-    type_list        type_list;
-    u1               *data;
+
+  DexHeader        *header;
+  string_ids       *string_ids;
+  string_data_item *string_data_item;
+  type_id_item     *type_id_item;
+  proto_id_item    *proto_id_item;
+  type_list        *proto_type_list;
+  field_id_item    *field_id_item;
+  method_id_item   *method_id_item;
+  class_def_item   *class_def_item;
+  class_data_item  *class_data_item;
+  map_list         map_list;
+  type_list        type_list;
+  u1               *data;
 } DexFileFormat;
 
+
 /* Dex File Parser */
-int parseDexFile(char *file, DexFileFormat *dex);
+int parseDexFile( char *raw, DexFileFormat *dex );
 void printDexFile(DexFileFormat *dex);
 
 /* map list parser */

@@ -41,10 +41,10 @@ void parse_string_ids(DexFileFormat *dex, unsigned char *buf, int offset)
     if (is_verbose() > 3)
         printf("parse string ids offset = %04x\n", offset + sizeof(DexHeader));
     dex->string_ids = malloc(
-                          sizeof(string_ids) * dex->header.stringIdsSize);
+                          sizeof(string_ids) * dex->header->stringIdsSize);
     dex->string_data_item = malloc(
-                                sizeof(string_data_item) * dex->header.stringIdsSize);
-    for (i = 0 ; i < dex->header.stringIdsSize ; i++) {
+                                sizeof(string_data_item) * dex->header->stringIdsSize);
+    for (i = 0 ; i < dex->header->stringIdsSize ; i++) {
         memcpy(&dex->string_ids[i].string_data_off,
                buf + i * 4 + offset, 4);
         parse_string_data_item(dex, buf,
@@ -55,7 +55,7 @@ void parse_string_ids(DexFileFormat *dex, unsigned char *buf, int offset)
 
 static string_data_item *get_string_data_item(DexFileFormat *dex, int string_id)
 {
-    if (string_id >= 0 && string_id < dex->header.stringIdsSize)
+    if (string_id >= 0 && string_id < dex->header->stringIdsSize)
         return &dex->string_data_item[string_id];
     return 0;
 }

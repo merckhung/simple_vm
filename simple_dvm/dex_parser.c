@@ -54,39 +54,30 @@ void printDexFile(DexFileFormat *dex)
 }
 
 /* Parse Dex File */
-int parseDexFile(char *file, DexFileFormat *dex)
-{
-    FILE *fp = 0;
-    unsigned char *buf = 0;
+int parseDexFile( char *raw, DexFileFormat *dex ) {
 
-    fp = fopen(file, "rb");
-    if (fp == 0) {
-        printf("Open file %s failed\n", file);
-        return -1;
-    }
-    memset(dex, 0, sizeof(dex));
-    fread(&dex->header, sizeof(DexHeader), 1, fp);
-    buf = (unsigned char *) malloc(
-              sizeof(u1) * (dex->header.fileSize - sizeof(DexHeader)));
+  char *buf;
 
-    /* read all value into buf */
-    fread(buf, (dex->header.fileSize - sizeof(DexHeader)), 1, fp);
-    fclose(fp);
+  // Initialize
+  memset( dex, 0, sizeof( DexFileFormat ) );
+  buf = raw + sizeof( DexHeader );
+  dex->header = (DexHeader *)raw;
 
-    parse_map_list(dex, buf, dex->header.mapOff - sizeof(DexHeader));
-    parse_string_ids(dex, buf, dex->header.stringIdsOff - sizeof(DexHeader));
-    parse_type_ids(dex, buf, dex->header.typeIdsOff - sizeof(DexHeader));
-    parse_proto_ids(dex, buf, dex->header.protoIdsOff - sizeof(DexHeader));
-    parse_field_ids(dex, buf, dex->header.fieldIdsOff - sizeof(DexHeader));
-    parse_method_ids(dex, buf, dex->header.methodIdsOff - sizeof(DexHeader));
-    parse_class_defs(dex, buf, dex->header.classDefsOff - sizeof(DexHeader));
+  parse_map_list( dex, buf, dex->header->mapOff - sizeof( DexHeader ) );
+  parse_string_ids( dex, buf, dex->header->stringIdsOff - sizeof( DexHeader ) );
+  parse_type_ids( dex, buf, dex->header->typeIdsOff - sizeof( DexHeader ) );
+  parse_proto_ids( dex, buf, dex->header->protoIdsOff - sizeof( DexHeader ) );
+  parse_field_ids( dex, buf, dex->header->fieldIdsOff - sizeof( DexHeader ) );
+  parse_method_ids( dex, buf, dex->header->methodIdsOff - sizeof( DexHeader ) );
+  parse_class_defs( dex, buf, dex->header->classDefsOff - sizeof( DexHeader ) );
 
-    if (dex->header.dataSize > 0) {
+  if( dex->header->dataSize > 0 ) {
       
-        dex->data = malloc(sizeof(u1) * dex->header.dataSize);
-        memcpy(dex->data, buf, dex->header.dataOff - sizeof(DexHeader));
-    }
+    dex->data = malloc(sizeof(u1) * dex->header->dataSize);
+    memcpy(dex->data, buf, dex->header->dataOff - sizeof(DexHeader));
+  }
 
-    free(buf);
-    return 0;
+  return 0;
 }
+
+

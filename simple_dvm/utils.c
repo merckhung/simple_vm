@@ -13,7 +13,7 @@ static int verbose_flag = 0;
 
 int is_verbose()
 {
-    return verbose_flag;
+    return 4;
 }
 
 int enable_verbose()

@@ -6,6 +6,7 @@
 
 #include "simple_dvm.h"
 
+
 /* Print Dex File Format */
 static void printDexHeader(DexHeader *dex)
 {
@@ -48,10 +49,12 @@ static void printDexHeader(DexHeader *dex)
     printf("dataOff       = %4d (0x%04x)\n", dex->dataOff, dex->dataOff);
 }
 
+
 void printDexFile(DexFileFormat *dex)
 {
     printDexHeader(&dex->header);
 }
+
 
 /* Parse Dex File */
 int parseDexFile( char *raw, DexFileFormat *dex ) {
@@ -59,7 +62,6 @@ int parseDexFile( char *raw, DexFileFormat *dex ) {
   char *buf;
 
   // Initialize
-  memset( dex, 0, sizeof( DexFileFormat ) );
   buf = raw + sizeof( DexHeader );
   dex->header = (DexHeader *)raw;
 
@@ -76,8 +78,7 @@ int parseDexFile( char *raw, DexFileFormat *dex ) {
     dex->data = malloc(sizeof(u1) * dex->header->dataSize);
     memcpy(dex->data, buf, dex->header->dataOff - sizeof(DexHeader));
   }
-
+  
   return 0;
 }
-
 

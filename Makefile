@@ -23,5 +23,8 @@ check: $(VMS)
 	@diff -u output-jvm output-dvm || echo "ERROR: different results"
 
 mychk: $(VMS)
-	simple_dvm/dvm tests/dhry.dex
+	simple_dvm/dvm tests/Foo1.dex 4
+
+debug: $(VMS)
+	ggdb simple_dvm/dvm
 

@@ -18,7 +18,7 @@
 
 int main( int argc, char **argv ) {
 
-  DexFileFormat *dex = NULL;
+  DexFileFormat dex;
   simple_dalvik_vm vm;
   int fd, fsize;
   int ret = 0;
@@ -62,20 +62,20 @@ int main( int argc, char **argv ) {
   }
 
   // Parse DEX file
-  if( parseDexFile( fp, dex ) < 0 ) {
+  if( parseDexFile( fp, &dex ) < 0 ) {
 
     fprintf( stderr, "Invalid DEX format\n" );
     ret = -1;
     goto ErrExit1;
   }
- 
+
   // Print out debug messages
   if( is_verbose() > 3 )
-    printDexFile( dex );
+    printDexFile( &dex );
   
   // Execute the run-time
-  simple_dvm_startup( dex, &vm, "main" );
-
+  simple_dvm_startup( &dex, &vm, "main" );
+  
 ErrExit1:
   // Release resource
   munmap( fp, fsize );
